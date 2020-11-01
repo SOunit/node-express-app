@@ -1,23 +1,22 @@
-/**
- * row code behined framework, express.js
- */
-
-// export routes code to outer file
 const express = require('express');
+const bodyParser = require('body-parser');
+
 const app = express();
 
-app.use('/', (req, res, next) => {
-  console.log('this runs always!');
-  next();
-});
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/add', (req, res, next) => {
-  console.log('add middleware!');
-  res.send('add page');
+  res.send(
+    '<form action="/logout" method="POST"><input type="text" name="title" /><input type="submit" /></form>'
+  );
+});
+
+app.use('/logout', (req, res, next) => {
+  console.log(req.body);
+  res.redirect('/');
 });
 
 app.use('/', (req, res, next) => {
-  console.log('middleware!');
   res.send('hello from middleware');
 });
 
