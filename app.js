@@ -2,22 +2,18 @@
  * row code behined framework, express.js
  */
 
-// import core modules in node style = require('module name');
-const http = require('http');
-
 // export routes code to outer file
-const routes = require('./routes');
+const express = require('express');
+const app = express();
 
-// old syntax
-// function rqListener(req, res) {}
-// http.createServer(rqListener);
+app.use((req, res, next) => {
+  console.log('middleware!');
+  next();
+});
 
-// old syntax
-// http.createServer(function (req, res) {});
+app.use((req, res, next) => {
+  console.log('another middleware!');
+  res.send('hello from middleware');
+});
 
-console.log(routes.sampleText);
-
-// new syntax
-const server = http.createServer(routes.handler);
-
-server.listen(3000);
+app.listen(3000);
