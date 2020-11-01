@@ -6,13 +6,18 @@
 const express = require('express');
 const app = express();
 
-app.use((req, res, next) => {
-  console.log('middleware!');
+app.use('/', (req, res, next) => {
+  console.log('this runs always!');
   next();
 });
 
-app.use((req, res, next) => {
-  console.log('another middleware!');
+app.use('/add', (req, res, next) => {
+  console.log('add middleware!');
+  res.send('add page');
+});
+
+app.use('/', (req, res, next) => {
+  console.log('middleware!');
   res.send('hello from middleware');
 });
 
