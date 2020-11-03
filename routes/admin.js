@@ -2,13 +2,15 @@ const express = require('express');
 
 const router = express.Router();
 
-router.use('/add', (req, res, next) => {
+// get /admin/add
+router.get('/add', (req, res, next) => {
   res.send(
-    '<form action="/product" method="POST"><input type="text" name="title" /><input type="submit" /></form>'
+    '<form action="/admin/add" method="POST"><input type="text" name="title" /><input type="submit" /></form>'
   );
 });
 
-router.post('/product', (req, res, next) => {
+// post /admin/add
+router.post('/add', (req, res, next) => {
   console.log(req.body);
   res.redirect('/');
 });
