@@ -1,23 +1,14 @@
-/**
- * row code behined framework, express.js
- */
+const express = require('express');
+const bodyParser = require('body-parser');
+const adminRouter = require('./routes/admin');
+const shopRouter = require('./routes/shop');
 
-// import core modules in node style = require('module name');
-const http = require('http');
+const app = express();
 
-// export routes code to outer file
-const routes = require('./routes');
+app.use(bodyParser.urlencoded({ extended: false }));
 
-// old syntax
-// function rqListener(req, res) {}
-// http.createServer(rqListener);
+app.use(adminRouter);
 
-// old syntax
-// http.createServer(function (req, res) {});
+app.use(shopRouter);
 
-console.log(routes.sampleText);
-
-// new syntax
-const server = http.createServer(routes.handler);
-
-server.listen(3000);
+app.listen(3000);
