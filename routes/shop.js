@@ -1,9 +1,13 @@
+const path = require('path');
 const express = require('express');
 
+const rootDir = require('../util/path');
 const router = express.Router();
 
-router.use('/', (req, res, next) => {
-  res.send('hello from middleware');
+router.get('/', (req, res, next) => {
+  // without or with helper
+  // res.sendFile(path.join(__dirname, '../', 'views', 'shop.html'));
+  res.sendFile(path.join(rootDir, 'views', 'shop.html'));
 });
 
 module.exports = router;
