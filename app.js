@@ -7,11 +7,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/add', (req, res, next) => {
   res.send(
-    '<form action="/logout" method="POST"><input type="text" name="title" /><input type="submit" /></form>'
+    '<form action="/product" method="POST"><input type="text" name="title" /><input type="submit" /></form>'
   );
 });
 
-app.use('/logout', (req, res, next) => {
+app.post('/product', (req, res, next) => {
   console.log(req.body);
   res.redirect('/');
 });
